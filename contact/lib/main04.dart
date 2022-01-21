@@ -47,11 +47,18 @@ class MyApp extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const[
+                  children: [
                     Text('캐논 DSLR 100D (단렌즈,\n충전기 16기가SD 포함)', style: TextStyle(fontSize: 18, color: Colors.black, )),
                     Text('성동구 행당동 · 끌올 10분 전', style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400, height: 2), textAlign: TextAlign.left),
                     Text('210,000원', style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.bold, letterSpacing: 0.5), textAlign: TextAlign.left),
-                  ],
+                    /*Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(Icons.favorite_border),
+                        Text('4'),
+                      ],
+                    )*/
+                  ], //const 를 쓰면 같은 타입의 파라미터만 적용 가능
                 ),
               ),
               Row(
