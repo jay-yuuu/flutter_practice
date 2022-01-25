@@ -18,11 +18,25 @@ void main() {
 //그게 누구라구? MaterialApp!
 //context 는 족보다!!! (부모, 조부모, 증조부모,, 등등, 단, 형제들은 안나옴)
 
-
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   var name = ['김영숙', '홍길동', '피자집'];
+
+  final myController = TextEditingController();
+
+  void onBtnClick() {
+    setState(() {
+      name.add(myController.text);
+      Navigator.of(context).pop();
+      myController.text = '';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +52,9 @@ class MyApp extends StatelessWidget {
                       title: Text('Contact'),
                       content: SingleChildScrollView(
                         child: ListBody(
-                          children: <Widget>[TextField()],
+                          children: <Widget>[TextField(
+                            controller: myController,
+                          )],
                         ),
                       ),
                       actions: <Widget>[
@@ -47,7 +63,7 @@ class MyApp extends StatelessWidget {
                             child: Text('Cancel'),
                         ),
                         TextButton(
-                          onPressed: (){Navigator.of(context).pop();},
+                          onPressed: () => onBtnClick(),
                           child: Text('OK'),
                         )
                       ],
@@ -58,8 +74,10 @@ class MyApp extends StatelessWidget {
           ),
           appBar: AppBar(),
           body: ListView.builder(
-            itemCount: 3,
+            itemCount: name.length,
             itemBuilder: (c, i){
+              print("body " + myController.text);
+              print(name.toString());
               return ListTile(
                 leading: Icon(Icons.account_circle_rounded, size: 40),
                 title: Text(name[i]),
@@ -68,5 +86,14 @@ class MyApp extends StatelessWidget {
           ),//custom widget
 
     );
+  }
+}
+
+class DialogUI extends StatelessWidget {
+  const DialogUI({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
